@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Notas de R – Proyectos Quarto</title>
+<title>About – Proyectos Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,11 +125,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -143,29 +143,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
-  <li><a href="#análisis-exploratorio-y-descriptivos" id="toc-análisis-exploratorio-y-descriptivos" class="nav-link" data-scroll-target="#análisis-exploratorio-y-descriptivos">Análisis Exploratorio y Descriptivos</a>
-  <ul class="collapse">
-  <li><a href="#datos-de-clientes" id="toc-datos-de-clientes" class="nav-link" data-scroll-target="#datos-de-clientes">Datos de clientes</a></li>
-  <li><a href="#descripción-de-datos" id="toc-descripción-de-datos" class="nav-link" data-scroll-target="#descripción-de-datos">Descripción de datos</a>
-  <ul class="collapse">
-  <li><a href="#descripción-de-datos-cuantitativos" id="toc-descripción-de-datos-cuantitativos" class="nav-link" data-scroll-target="#descripción-de-datos-cuantitativos">Descripción de datos cuantitativos</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notas de R</h1>
+<h1 class="title">About</h1>
 </div>
 
 
@@ -182,138 +168,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introducción" class="level1">
-<h1>Introducción</h1>
-<p>Estas notas fueron realizadas con la finalidad de ser un recurso fundamental para el análisis de datos. Una guía que permita agilizar y tomar decisiones rápidas en cuanto a los procedimientos ideales para el procesamiento, análisis, inferencia y viasualización de datos en R.</p>
-<p>Nota: Todos los recursos empleados en este documento son extraídos de notas de clases, páginas web y propios.</p>
-</section>
-<section id="análisis-exploratorio-y-descriptivos" class="level1">
-<h1>Análisis Exploratorio y Descriptivos</h1>
-<p>Uno de los pasos más importantes al realizar un análisis de datos, es explorar y describir los datos con los que se cuentan. En esta sección se revisará temas como: Datos faltantes, reemplazar valores, visualización de datos e incluso prubas no parámetricas.</p>
-<section id="datos-de-clientes" class="level2">
-<h2 class="anchored" data-anchor-id="datos-de-clientes">Datos de clientes</h2>
-<p>La base de datos data_clientes contiene información de los clientes de una Cooperativa, se cuentan con 4117 registro y 11 columnas con variables que incluyen un identificador único, así como características sociodemográficas como la edad, el género y el estado civil. También recoge variables económicas como los ingresos anuales, el número de hijos, el número de tarjetas, la modalidad de pago, la tenencia de hipoteca y el número de préstamos activos. Finalmente, incluye la variable RIESGO, que clasifica a los clientes según su perfil crediticio, y puede ser utilizada como variable objetivo en modelos de predicción o segmentación.</p>
+<p>About this site</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar librerías e instalar las que no estén instaladas</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar base de datos</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data_clientes <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"C:/Users/natal/Escritorio/Semestres/Semestre 10/Mineria/Data Clientes Cooperativa.txt"</span>, </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">sep=</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">na=</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">""</span>, <span class="st">" "</span>), <span class="at">header=</span>T)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Revisar los primeros 6 registros de la base de datos</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_clientes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      ID EDAD INGRESOS GENERO ESTADO_CIVIL NUM_HIJOS NUM_TARJETAS
-1 100756   44    59944      m      married         1            2
-2 100668   35    59692   &lt;NA&gt;      married         1            1
-3 100418   34    59508      m      married         1            1
-4 100416   34    59463      m      married         0            2
-5 100590   39    59393      f      married         0            2
-6 100657   41    59276      m      married         1            2
-  MODALIDAD_PAGO HIPOTECA PRESTAMOS RIESGO
-1        monthly        y         0      V
-2        monthly        y         0      F
-3        monthly        y         1      V
-4        monthly        y         1      F
-5        monthly        y         0      V
-6        monthly        y         1      V</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estructura de la base de datos </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_clientes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 4,117
-Columns: 11
-$ ID             &lt;int&gt; 100756, 100668, 100418, 100416, 100590, 100657, 100702,…
-$ EDAD           &lt;int&gt; 44, 35, 34, 34, 39, 41, 42, 31, 28, 30, 38, 36, 42, 44,…
-$ INGRESOS       &lt;int&gt; 59944, 59692, 59508, 59463, 59393, 59276, 59201, 59193,…
-$ GENERO         &lt;chr&gt; "m", NA, "m", "m", "f", "m", "m", "f", "m", "m", "m", "…
-$ ESTADO_CIVIL   &lt;chr&gt; "married", "married", "married", "married", "married", …
-$ NUM_HIJOS      &lt;int&gt; 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1…
-$ NUM_TARJETAS   &lt;int&gt; 2, 1, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1…
-$ MODALIDAD_PAGO &lt;chr&gt; "monthly", "monthly", "monthly", "monthly", "monthly", …
-$ HIPOTECA       &lt;chr&gt; "y", "y", "y", "y", "y", "y", "y", "y", "y", "y", "y", …
-$ PRESTAMOS      &lt;int&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1…
-$ RIESGO         &lt;chr&gt; "V", "F", "V", "F", "V", "V", "V", "V", "F", "V", "F", …</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadísticas descriptivas de las variables de la base de datos</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_clientes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       ID              EDAD          INGRESOS        GENERO         
- Min.   :100001   Min.   :18.00   Min.   :15005   Length:4117       
- 1st Qu.:101030   1st Qu.:23.00   1st Qu.:20497   Class :character  
- Median :102059   Median :31.00   Median :23490   Mode  :character  
- Mean   :102059   Mean   :31.82   Mean   :25580                     
- 3rd Qu.:103088   3rd Qu.:41.00   3rd Qu.:27566                     
- Max.   :104117   Max.   :50.00   Max.   :59944                     
- ESTADO_CIVIL         NUM_HIJOS      NUM_TARJETAS   MODALIDAD_PAGO    
- Length:4117        Min.   :0.000   Min.   :0.000   Length:4117       
- Class :character   1st Qu.:1.000   1st Qu.:1.000   Class :character  
- Mode  :character   Median :1.000   Median :2.000   Mode  :character  
-                    Mean   :1.453   Mean   :2.429                     
-                    3rd Qu.:2.000   3rd Qu.:4.000                     
-                    Max.   :4.000   Max.   :6.000                     
-   HIPOTECA           PRESTAMOS        RIESGO         
- Length:4117        Min.   :0.000   Length:4117       
- Class :character   1st Qu.:1.000   Class :character  
- Mode  :character   Median :1.000   Mode  :character  
-                    Mean   :1.376                     
-                    3rd Qu.:2.000                     
-                    Max.   :3.000                     </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(data_clientes<span class="sc">$</span>ID))  <span class="co">#Devuelve el número de valores únicos en la variable ID</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4117</code></pre>
-</div>
-</div>
-</section>
-<section id="descripción-de-datos" class="level2">
-<h2 class="anchored" data-anchor-id="descripción-de-datos">Descripción de datos</h2>
-<section id="descripción-de-datos-cuantitativos" class="level3">
-<h3 class="anchored" data-anchor-id="descripción-de-datos-cuantitativos">Descripción de datos cuantitativos</h3>
-<p>Este código permite obtener información detallada de las estadísticas descriptivas para las variables numéricas, como el n, desviación estándar, IQR, etc. Esta información es mucho más completa que el summary().</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>variables.Num <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"EDAD"</span>, <span class="st">"INGRESOS"</span>, <span class="st">"NUM_HIJOS"</span>, <span class="st">"NUM_TARJETAS"</span>, <span class="st">"PRESTAMOS"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla: Análisis descriptivo variables númericas</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>tabla_descrip.dt_clientes <span class="ot">&lt;-</span> <span class="fu">sapply</span>(variables.Num, <span class="cf">function</span>(var){</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  x<span class="ot">=</span>data_clientes[[var]]</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">n=</span> <span class="fu">length</span>(x),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">media=</span> <span class="fu">round</span>(<span class="fu">mean</span>(x, <span class="at">na.rm=</span>T),<span class="dv">2</span>),</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desv.Est=</span> <span class="fu">round</span>(<span class="fu">sd</span>(x, <span class="at">na.rm=</span>T),<span class="dv">2</span>),</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mediana=</span> <span class="fu">round</span>(<span class="fu">median</span>(x, <span class="at">na.rm=</span>T),<span class="dv">2</span>),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">IQR=</span> <span class="fu">round</span>(<span class="fu">IQR</span>(x, <span class="at">na.rm=</span>T),<span class="dv">2</span>),</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Percentil1=</span> <span class="fu">round</span>(<span class="fu">quantile</span>(x, <span class="at">prob=</span><span class="fl">0.25</span>, <span class="at">na.rm=</span>T),<span class="dv">2</span>),</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Percentil2=</span> <span class="fu">round</span>(<span class="fu">quantile</span>(x, <span class="at">prob=</span><span class="fl">0.75</span>, <span class="at">na.rm=</span>T),<span class="dv">2</span>),</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Percentil3=</span> <span class="fu">round</span>(<span class="fu">quantile</span>(x, <span class="at">prob=</span><span class="fl">0.95</span>, <span class="at">na.rm=</span>T),<span class="dv">2</span>))</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>tabla_descrip.dt_clientes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                  EDAD INGRESOS NUM_HIJOS NUM_TARJETAS PRESTAMOS
-n              4117.00  4117.00   4117.00      4117.00   4117.00
-media            31.82 25580.21      1.45         2.43      1.38
-Desv.Est          9.88  8766.87      1.17         1.88      0.84
-mediana          31.00 23490.00      1.00         2.00      1.00
-IQR              18.00  7069.00      1.00         3.00      1.00
-Percentil1.25%   23.00 20497.00      1.00         1.00      1.00
-Percentil2.75%   41.00 27566.00      2.00         4.00      2.00
-Percentil3.95%   48.00 44773.80      4.00         6.00      3.00</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
 
 
-</section>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

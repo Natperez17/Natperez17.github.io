@@ -1,10 +1,71 @@
 ---
-title: "Natperez17.github.io"
+title: "Notas de R"
 ---
 
-This is a Quarto website.
+# Introducción
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Estas notas fueron realizadas con la finalidad de ser un recurso fundamental para el análisis de datos. Una guía que permita agilizar y tomar decisiones rápidas en cuanto a los procedimientos ideales para el procesamiento, análisis, inferencia y viasualización de datos en R.
+
+Nota: Todos los recursos empleados en este documento son extraídos de notas de clases, páginas web y propios. 
+
+
+# Análisis Exploratorio y Descriptivos
+
+Uno de los pasos más importantes al realizar un análisis de datos, es explorar y describir los datos con los que se cuentan. En esta sección se revisará temas como: Datos faltantes, reemplazar valores, visualización de datos e incluso prubas no parámetricas.
+
+## Datos de clientes
+
+La base de datos data_clientes contiene información de los clientes de una Cooperativa, se cuentan con 4117 registro y 11 columnas con variables que incluyen un identificador único, así como características sociodemográficas como la edad, el género y el estado civil. También recoge variables económicas como los ingresos anuales, el número de hijos, el número de tarjetas, la modalidad de pago, la tenencia de hipoteca y el número de préstamos activos. Finalmente, incluye la variable RIESGO, que clasifica a los clientes según su perfil crediticio, y puede ser utilizada como variable objetivo en modelos de predicción o segmentación.
+
+
+```{r}
+# Cargar librerías e instalar las que no estén instaladas
+pacman::p_load(tidyverse, janitor)
+```
+
+```{r}
+# Cargar base de datos
+data_clientes <- read.table("C:/Users/natal/Escritorio/Semestres/Semestre 10/Mineria/Data Clientes Cooperativa.txt", 
+                            sep= "\t", na= c("NA", "", " "), header=T)
+
+# Revisar los primeros 6 registros de la base de datos
+head(data_clientes)
+
+# Estructura de la base de datos 
+glimpse(data_clientes)
+
+# Estadísticas descriptivas de las variables de la base de datos
+summary(data_clientes)
+
+length(unique(data_clientes$ID))  #Devuelve el número de valores únicos en la variable ID
+
+```
+## Descripción de datos
+
+### Descripción de datos cuantitativos
+
+Este código permite obtener información detallada de las estadísticas descriptivas para las variables numéricas, como el n, desviación estándar, IQR, etc. Esta información es mucho más completa que el summary().
+
+```{r}
+variables.Num <- c("EDAD", "INGRESOS", "NUM_HIJOS", "NUM_TARJETAS", "PRESTAMOS")
+
+# Tabla: Análisis descriptivo variables númericas
+
+tabla_descrip.dt_clientes <- sapply(variables.Num, function(var){
+  x=data_clientes[[var]]
+  c(n= length(x),
+    media= round(mean(x, na.rm=T),2),
+    Desv.Est= round(sd(x, na.rm=T),2),
+    mediana= round(median(x, na.rm=T),2),
+    IQR= round(IQR(x, na.rm=T),2),
+    Percentil1= round(quantile(x, prob=0.25, na.rm=T),2),
+    Percentil2= round(quantile(x, prob=0.75, na.rm=T),2),
+    Percentil3= round(quantile(x, prob=0.95, na.rm=T),2))
+})
+
+tabla_descrip.dt_clientes
+```
+
 
 ```{r}
 1 + 1

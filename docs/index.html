@@ -155,7 +155,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#descripción-de-datos" id="toc-descripción-de-datos" class="nav-link" data-scroll-target="#descripción-de-datos">Descripción de datos</a>
   <ul class="collapse">
   <li><a href="#descripción-de-datos-cuantitativos" id="toc-descripción-de-datos-cuantitativos" class="nav-link" data-scroll-target="#descripción-de-datos-cuantitativos">Descripción de datos cuantitativos</a></li>
+  <li><a href="#descripción-de-datos-cualitativos" id="toc-descripción-de-datos-cualitativos" class="nav-link" data-scroll-target="#descripción-de-datos-cualitativos">Descripción de datos cualitativos</a></li>
   </ul></li>
+  <li><a href="#datos-faltantes" id="toc-datos-faltantes" class="nav-link" data-scroll-target="#datos-faltantes">Datos faltantes</a></li>
+  <li><a href="#modificar-categorías-de-las-variables" id="toc-modificar-categorías-de-las-variables" class="nav-link" data-scroll-target="#modificar-categorías-de-las-variables">Modificar categorías de las variables</a></li>
+  <li><a href="#pruebas-no-paramétricas" id="toc-pruebas-no-paramétricas" class="nav-link" data-scroll-target="#pruebas-no-paramétricas">Pruebas No paramétricas</a>
+  <ul class="collapse">
+  <li><a href="#evaluar-normalidad" id="toc-evaluar-normalidad" class="nav-link" data-scroll-target="#evaluar-normalidad">Evaluar normalidad</a></li>
+  <li><a href="#correlación" id="toc-correlación" class="nav-link" data-scroll-target="#correlación">Correlación</a></li>
+  <li><a href="#u-de-mann-whitney" id="toc-u-de-mann-whitney" class="nav-link" data-scroll-target="#u-de-mann-whitney">U de Mann-Whitney</a></li>
+  <li><a href="#otros" id="toc-otros" class="nav-link" data-scroll-target="#otros">Otros</a></li>
+  </ul></li>
+  <li><a href="#visualización-de-datos" id="toc-visualización-de-datos" class="nav-link" data-scroll-target="#visualización-de-datos">Visualización de datos</a>
+  <ul class="collapse">
+  <li><a href="#gráfico-de-barras" id="toc-gráfico-de-barras" class="nav-link" data-scroll-target="#gráfico-de-barras">Gráfico de barras</a></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot">Boxplot</a></li>
+  <li><a href="#dispersión" id="toc-dispersión" class="nav-link" data-scroll-target="#dispersión">Dispersión</a></li>
+  <li><a href="#mosaico" id="toc-mosaico" class="nav-link" data-scroll-target="#mosaico">Mosaico</a></li>
+  </ul></li>
+  <li><a href="#tablas-gtsummary" id="toc-tablas-gtsummary" class="nav-link" data-scroll-target="#tablas-gtsummary">Tablas gtsummary</a>
+  <ul class="collapse">
+  <li><a href="#tablas-univariadas" id="toc-tablas-univariadas" class="nav-link" data-scroll-target="#tablas-univariadas">Tablas univariadas</a></li>
+  <li><a href="#tablas-bivariadas" id="toc-tablas-bivariadas" class="nav-link" data-scroll-target="#tablas-bivariadas">Tablas bivariadas</a></li>
+  <li><a href="#tablas-bivariadas-con-valores-p" id="toc-tablas-bivariadas-con-valores-p" class="nav-link" data-scroll-target="#tablas-bivariadas-con-valores-p">Tablas bivariadas con valores p</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#modelos" id="toc-modelos" class="nav-link" data-scroll-target="#modelos">Modelos</a>
+  <ul class="collapse">
+  <li><a href="#modelo-líneal-simple" id="toc-modelo-líneal-simple" class="nav-link" data-scroll-target="#modelo-líneal-simple">Modelo Líneal simple</a></li>
+  <li><a href="#modelo-líneal-múltiple" id="toc-modelo-líneal-múltiple" class="nav-link" data-scroll-target="#modelo-líneal-múltiple">Modelo Líneal múltiple</a></li>
+  <li><a href="#modelo-logístico" id="toc-modelo-logístico" class="nav-link" data-scroll-target="#modelo-logístico">Modelo Logístico</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -303,15 +332,2716 @@ Percentil2.75%   41.00 27566.00      2.00         4.00      2.00
 Percentil3.95%   48.00 44773.80      4.00         6.00      3.00</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-
-
 </section>
+<section id="descripción-de-datos-cualitativos" class="level3">
+<h3 class="anchored" data-anchor-id="descripción-de-datos-cualitativos">Descripción de datos cualitativos</h3>
+<p>Este código genera las frecuencias absolutas y relativas para todas las variables cualitativas a tráves de tabyl() y lapply(), este último comando se utiliza para aplicar una función a cada elemento de una lista o vector, devolviendo siempre el resultado como una lista.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>variables.Cat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"GENERO"</span>, <span class="st">"ESTADO_CIVIL"</span>, <span class="st">"MODALIDAD_PAGO"</span>, <span class="st">"HIPOTECA"</span>, <span class="st">"RIESGO"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Frec_tablas.Cat <span class="ot">&lt;-</span> <span class="fu">lapply</span>(variables.Cat, <span class="cf">function</span>(var) <span class="fu">tabyl</span>(data_clientes[[var]]))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Frec_tablas.Cat) <span class="ot">&lt;-</span> variables.Cat</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Frec_tablas.Cat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$GENERO
+ data_clientes[[var]]    n      percent valid_percent
+                    f 2077 0.5044935633     0.5046161
+                    m 2039 0.4952635414     0.4953839
+                 &lt;NA&gt;    1 0.0002428953            NA
+
+$ESTADO_CIVIL
+ data_clientes[[var]]    n   percent
+            divsepwid  873 0.2120476
+              married 2089 0.5074083
+               single 1155 0.2805441
+
+$MODALIDAD_PAGO
+ data_clientes[[var]]    n   percent
+              monthly 2026 0.4921059
+               weekly 2091 0.5078941
+
+$HIPOTECA
+ data_clientes[[var]]    n  percent
+                    n  917 0.222735
+                    y 3200 0.777265
+
+$RIESGO
+ data_clientes[[var]]    n   percent
+                    F 3313 0.8047122
+                    V  804 0.1952878</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="datos-faltantes" class="level2">
+<h2 class="anchored" data-anchor-id="datos-faltantes">Datos faltantes</h2>
+<p>La figura fig-MissData es muy útil para visualizar los datos faltantes por variable. En este caso hay muy pocos por lo que no se logran ver.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(visdat)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-MissData</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Datos faltantes con vis_miss"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(data_clientes) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Por otro lado, dado que la idea es identificar cuáles son las variables que contienen NA’s se utiliza sapply() en vez de lapply() dado que la idea es que devuelva un vector en vez de una lista.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Revisar si la base de datos contiene NA (contiene 1)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(data_clientes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar en que columna se encuentra el NA</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Na_columnas.dt_clientes <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">dput</span>(<span class="fu">colnames</span>(data_clientes)), <span class="cf">function</span>(var) <span class="fu">sum</span>(<span class="fu">is.na</span>(data_clientes[[var]])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>c("ID", "EDAD", "INGRESOS", "GENERO", "ESTADO_CIVIL", "NUM_HIJOS", 
+"NUM_TARJETAS", "MODALIDAD_PAGO", "HIPOTECA", "PRESTAMOS", "RIESGO"
+)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Na_columnas.dt_clientes <span class="co"># Se encuentra en la variable GENERO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            ID           EDAD       INGRESOS         GENERO   ESTADO_CIVIL 
+             0              0              0              1              0 
+     NUM_HIJOS   NUM_TARJETAS MODALIDAD_PAGO       HIPOTECA      PRESTAMOS 
+             0              0              0              0              0 
+        RIESGO 
+             0 </code></pre>
+</div>
+</div>
+</section>
+<section id="modificar-categorías-de-las-variables" class="level2">
+<h2 class="anchored" data-anchor-id="modificar-categorías-de-las-variables">Modificar categorías de las variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>data_clientes <span class="ot">&lt;-</span> data_clientes <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GENERO =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(GENERO, <span class="st">"f"</span><span class="ot">=</span> <span class="st">"Femenino"</span>, <span class="st">"m"</span><span class="ot">=</span> <span class="st">"Masculino"</span>),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ESTADO_CIVIL =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(ESTADO_CIVIL, <span class="st">"divsepwid"</span> <span class="ot">=</span> <span class="st">"Viudo/Divorciado"</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">"married"</span> <span class="ot">=</span> <span class="st">"Casado"</span>, <span class="st">"single"</span> <span class="ot">=</span> <span class="st">"Soltero"</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">MODALIDAD_PAGO =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(MODALIDAD_PAGO, <span class="st">"monthly"</span><span class="ot">=</span> <span class="st">"Mensual"</span>, </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"weekly"</span> <span class="ot">=</span> <span class="st">"Semanal"</span>),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">HIPOTECA =</span>dplyr<span class="sc">::</span><span class="fu">recode</span>(HIPOTECA,<span class="st">"n"</span><span class="ot">=</span><span class="st">"NO"</span>, <span class="st">"y"</span><span class="ot">=</span><span class="st">"Si"</span>),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">RIESGO =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(RIESGO, <span class="st">"F"</span><span class="ot">=</span><span class="st">"Cumplimiento"</span>, <span class="st">"V"</span><span class="ot">=</span><span class="st">"Impago"</span>))</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Revisar como quedaron las variables recodificadas</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_clientes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 4,117
+Columns: 11
+$ ID             &lt;int&gt; 100756, 100668, 100418, 100416, 100590, 100657, 100702,…
+$ EDAD           &lt;int&gt; 44, 35, 34, 34, 39, 41, 42, 31, 28, 30, 38, 36, 42, 44,…
+$ INGRESOS       &lt;int&gt; 59944, 59692, 59508, 59463, 59393, 59276, 59201, 59193,…
+$ GENERO         &lt;chr&gt; "Masculino", NA, "Masculino", "Masculino", "Femenino", …
+$ ESTADO_CIVIL   &lt;chr&gt; "Casado", "Casado", "Casado", "Casado", "Casado", "Casa…
+$ NUM_HIJOS      &lt;int&gt; 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1…
+$ NUM_TARJETAS   &lt;int&gt; 2, 1, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1…
+$ MODALIDAD_PAGO &lt;chr&gt; "Mensual", "Mensual", "Mensual", "Mensual", "Mensual", …
+$ HIPOTECA       &lt;chr&gt; "Si", "Si", "Si", "Si", "Si", "Si", "Si", "Si", "Si", "…
+$ PRESTAMOS      &lt;int&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1…
+$ RIESGO         &lt;chr&gt; "Impago", "Cumplimiento", "Impago", "Cumplimiento", "Im…</code></pre>
+</div>
+</div>
+</section>
+<section id="pruebas-no-paramétricas" class="level2">
+<h2 class="anchored" data-anchor-id="pruebas-no-paramétricas">Pruebas No paramétricas</h2>
+<p>La pruebas parámétricas son esenciales cuando se quiere realizar análisis bivariados sin asumir una distribución específica de los datos queu generalemnte es la normalidad. Existen varias pruebas para realizar inferencias respecto a las relaciones, sin embargo hay ciertas condiciones que se deben tener en cuenta como lo muestra la siguiente tabla:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 27%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo de Variables Comparadas</th>
+<th>Condición</th>
+<th>Prueba Estadística</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>2 variables numéricas</strong></td>
+<td>Distribución normal</td>
+<td><strong>Correlación de Pearson</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>No normal</td>
+<td><strong>Correlación de Spearman</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1 variable numérica + 1 categórica</strong></td>
+<td>Distribución normal</td>
+<td>2 categorías: <strong>t de Student</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>&gt;2 categorías: <strong>ANOVA</strong></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>No normal</td>
+<td>2 categorías: <strong>U de Mann-Whitney</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>&gt;2 categorías: <strong>Kruskal-Wallis</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>2 variables categóricas</strong></td>
+<td>Tabla 2x2</td>
+<td><strong>Test de Fisher</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Tabla r x s (&gt;2 categorías)</td>
+<td><strong>Chi-cuadrado (χ²)</strong></td>
+</tr>
+</tbody>
+</table>
+<section id="evaluar-normalidad" class="level3">
+<h3 class="anchored" data-anchor-id="evaluar-normalidad">Evaluar normalidad</h3>
+<p>La prueba de Shapiro-Wilk se utiliza para evualar la normalidad de una variable, el comando es shapiro.test().</p>
+<p>(H₀): Los datos provienen de una distribución normal.</p>
+<p>(H₁): Los datos no provienen de una distribución normal.</p>
+<p><strong>Interpretación del p-valor</strong>:</p>
+<p>Si <strong>p &gt; 0.05</strong>: no se rechaza H₀ → los datos son compatibles con una distribución normal.</p>
+<p>Si <strong>p ≤ 0.05</strong>: se rechaza H₀ → los datos no siguen una distribución normal.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Norm_tablas.Num <span class="ot">&lt;-</span> <span class="fu">lapply</span>(variables.Num, <span class="cf">function</span>(var) <span class="fu">shapiro.test</span>(data_clientes[[var]]))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Norm_tablas.Num) <span class="ot">&lt;-</span> variables.Num</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>Norm_tablas.Num <span class="co"># Ninguna variable sigue una distribución normal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$EDAD
+
+    Shapiro-Wilk normality test
+
+data:  data_clientes[[var]]
+W = 0.91622, p-value &lt; 2.2e-16
+
+
+$INGRESOS
+
+    Shapiro-Wilk normality test
+
+data:  data_clientes[[var]]
+W = 0.82675, p-value &lt; 2.2e-16
+
+
+$NUM_HIJOS
+
+    Shapiro-Wilk normality test
+
+data:  data_clientes[[var]]
+W = 0.88775, p-value &lt; 2.2e-16
+
+
+$NUM_TARJETAS
+
+    Shapiro-Wilk normality test
+
+data:  data_clientes[[var]]
+W = 0.88518, p-value &lt; 2.2e-16
+
+
+$PRESTAMOS
+
+    Shapiro-Wilk normality test
+
+data:  data_clientes[[var]]
+W = 0.86204, p-value &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="correlación" class="level3">
+<h3 class="anchored" data-anchor-id="correlación">Correlación</h3>
+<p>Es una medida estadística que indica la fuerza y dirección de una relación lineal entre dos variables cuantitativas.El resultado se encuentra en un rango entre [-1,1]. <strong>-1</strong> : Correlación negativa perfecta (una variable sube y otra baja) <strong>0</strong>: No hay correlación <strong>1</strong>: Correlación positiva perfecta (ambas variables aumentan o disminuyen juntas)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>corrplot 0.92 loaded</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(data_clientes<span class="sc">$</span>INGRESOS, data_clientes<span class="sc">$</span>EDAD, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3568635</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlación entre las variables numéricas ------------------------------------</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de correlación</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>Matriz_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(data_clientes[variables.Num], <span class="co">#Dataframe con las variables numéricas de interés</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">use =</span> <span class="st">"complete.obs"</span>,  <span class="co">#Utiliza solo filas con datos completos, es como un na.rm =T</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">method =</span> <span class="st">"spearman"</span>)   <span class="co">#Método a utilizar: Spearman, Pearson, etc.</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de correlación</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(Matriz_cor,         <span class="co">#Matriz de correlación previamente calculada</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"color"</span>,   <span class="co">#Agregar color para identificar la intensidad de la correlación</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">"upper"</span>,     <span class="co">#Visualizar solo el triangulo superior</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> T)    <span class="co">#Añadir los valores de la autocorrelación en color negro</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="u-de-mann-whitney" class="level3">
+<h3 class="anchored" data-anchor-id="u-de-mann-whitney">U de Mann-Whitney</h3>
+<p>Esta prueba evalúa si hay diferencia entre las medianas de los grupos.El comando difiere al nombre ya que es wilcox.test().</p>
+<p>(H₀): La mediana de los grupos son iguales.</p>
+<p>(H₁): La mediana de los grupos son diferentes.</p>
+<p>Si <strong>p ≤ 0.05</strong>: se rechaza H₀ → Hay diferencia en las medianas de los grupos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(INGRESOS<span class="sc">~</span>GENERO,  <span class="co"># Formula, como en un modelo logistico simple</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> data_clientes) <span class="co">#datos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  INGRESOS by GENERO
+W = 2088984, p-value = 0.4544
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+</section>
+<section id="otros" class="level3">
+<h3 class="anchored" data-anchor-id="otros">Otros</h3>
+<p>Para T-Student y ANOVA se evalúa la diferencia entre las medias de los grupos. Parael test de Kruskall Wallis la diferencia entre las medianas de los grupos. Para el Test de fisher y Chi-cuadrado se evalúa la indepencia. Siempre se busca rechazar la Hiótesis nula, es decir, <strong>p ≤ 0.05</strong>.</p>
+<p><strong>T-Student</strong>: t.test() <strong>ANOVA</strong>: aov(). Antes se evalúa la homogeneidad de varianzas con bartlett.test(). <strong>Kruskal Wallis</strong>: kruskal.test() <strong>Test de fisher</strong>: fisher.test() <strong>Chi-cuadrado</strong>: chisq.test(). Tiene supuesto de valor esperado.</p>
+</section>
+</section>
+<section id="visualización-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-de-datos">Visualización de datos</h2>
+<section id="gráfico-de-barras" class="level3">
+<h3 class="anchored" data-anchor-id="gráfico-de-barras">Gráfico de barras</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-barras</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Gráfico de barras"</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_clientes, <span class="co"># Dataframe que incluye la variable</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>ESTADO_CIVIL, <span class="co"># Variable que quiero graficar (Se grafica el conteo)</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill=</span>ESTADO_CIVIL)) <span class="sc">+</span> <span class="co">#fill agrega color a cada categoría (colores predeterminados)</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="co">#Función que establece el tipo de gráfico</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="co"># Texto que se mostrará</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">stat =</span> <span class="st">"count"</span>, <span class="co"># Cómo calcular el valor Conteo de observaciones</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust=</span><span class="dv">2</span>, <span class="co"># Ubicación del valor</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">color=</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="co"># Color del texto o label</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#1C86EE"</span>, <span class="st">"#458B00"</span>, <span class="st">"#EE1289"</span>)) <span class="sc">+</span> <span class="co"># Personalizar colores, fill debe estar arriba</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">"Soltero"</span>, <span class="st">"Casado"</span>, <span class="st">"Viudo/Divorciado"</span>)) <span class="sc">+</span> <span class="co"># Personalizar el orden de la variable x</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>, <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co">#Agregar la leyenda al lado derecho y eliminar título eje y</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Conteo de la variable Estado civil por categoría"</span>, <span class="at">x =</span> <span class="st">" Estado civil"</span>, </span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Conteo (Frecuencia absoluta)"</span>) <span class="sc">+</span> <span class="co"># Agregar título y modificar nombres de los ejes</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"Estado Civil"</span>)) <span class="co"># Modificar título de la leyenda</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
+ℹ Please use `after_stat(count)` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="boxplot" class="level3">
+<h3 class="anchored" data-anchor-id="boxplot">Boxplot</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_clientes, <span class="fu">aes</span>(<span class="at">x =</span> GENERO, <span class="at">y=</span> INGRESOS)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_boxplot</span>(<span class="at">geom =</span> <span class="st">"errorbar"</span>,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">width=</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha=</span><span class="fl">0.5</span>, </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill=</span><span class="st">"#1C86EE"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">colour=</span> <span class="st">"black"</span>, </span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">outlier.colour =</span> <span class="st">"#87CEFA"</span>) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits=</span> <span class="fu">c</span>(<span class="st">"Femenino"</span>, <span class="st">"Masculino"</span>)) <span class="sc">+</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico de cajas: Ingresos por Género"</span>, <span class="at">x=</span><span class="st">"Género"</span>, <span class="at">y=</span><span class="st">"Ingresos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`stat_boxplot()`).
+Removed 1 row containing missing values or values outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-boxplot-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Gráfico de Cajas y Bigotes
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dispersión" class="level3">
+<h3 class="anchored" data-anchor-id="dispersión">Dispersión</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-dispersion</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Gráfico de Dispersión"</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_clientes, <span class="fu">aes</span>(<span class="at">x=</span>EDAD, <span class="at">y=</span>INGRESOS)) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span> <span class="co">#Agregar transparencia para que se vea menos denso</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Edad vs Ingresos"</span>, <span class="at">x=</span><span class="st">"Edad"</span>, <span class="at">y=</span><span class="st">"Ingresos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>data_clientes.Edad_Ingr <span class="ot">&lt;-</span> data_clientes <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(EDAD, INGRESOS) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(EDAD) <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_Ingresos =</span> <span class="fu">mean</span>(INGRESOS, <span class="at">na.rm=</span>T))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_clientes.Edad_Ingr, <span class="fu">aes</span>(<span class="at">x=</span>EDAD, <span class="at">y=</span>media_Ingresos)) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Media de los Ingresos por Edad"</span>, <span class="at">x=</span><span class="st">"Edad"</span>, <span class="at">y=</span><span class="st">"Media de los Ingresos"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mosaico" class="level3">
+<h3 class="anchored" data-anchor-id="mosaico">Mosaico</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-Mosaico</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Gráfico de Mosaico"</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggmosaic' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_clientes) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">product</span>(RIESGO) , <span class="at">fill=</span>ESTADO_CIVIL)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span><span class="fu">c</span>(<span class="st">"#1C86EE"</span>, <span class="st">"#458B00"</span>, <span class="st">"#EE1289"</span>)) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gráfico Mosaico: Riesgo vs Estado Civil"</span>, <span class="at">y=</span> <span class="st">"Estado Civil"</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Riesgo"</span>) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title=</span> <span class="st">"Estado Civil"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `scale_name` argument of `continuous_scale()` is deprecated as of ggplot2
+3.5.0.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `trans` argument of `continuous_scale()` is deprecated as of ggplot2 3.5.0.
+ℹ Please use the `transform` argument instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `unite_()` was deprecated in tidyr 1.2.0.
+ℹ Please use `unite()` instead.
+ℹ The deprecated feature was likely used in the ggmosaic package.
+  Please report the issue at &lt;https://github.com/haleyjeppson/ggmosaic&gt;.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tablas-gtsummary" class="level2">
+<h2 class="anchored" data-anchor-id="tablas-gtsummary">Tablas gtsummary</h2>
+<section id="tablas-univariadas" class="level3">
+<h3 class="anchored" data-anchor-id="tablas-univariadas">Tablas univariadas</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>data_clientes <span class="sc">%&gt;%</span> <span class="co"># datos</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(GENERO, ESTADO_CIVIL, MODALIDAD_PAGO, HIPOTECA, RIESGO) <span class="sc">%&gt;%</span> <span class="co"># se seleccionan las variables que se van a tabular, incluyendo la variable a estratificar </span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="cn">NULL</span>, <span class="co"># nombre variable a estratificar</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">missing =</span> <span class="st">"always"</span>, <span class="co"># incluye fila de conteo NA para todas las variables, no se incluye el porcentaje</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">missing_text =</span> <span class="st">"(Missing)"</span>, <span class="co"># nombre que identifica el recuento de observaciones faltantes</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{median} ({p25}, {p75})"</span>), <span class="co"># especificar segun test de normalidad, en caso de no rechazar Ho~normalidad se especificaría: list(all_continuous() ~ "{mean} ({sd})")</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">digits =</span> <span class="fu">list</span>(<span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="co"># (0) sin decimal la frecuencia absoluta, y (1) decimal la frecuencia relativa</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))) <span class="sc">%&gt;%</span> <span class="co"># (0) sin decimal la mediana o media, y (1) decimal la desv estandar o IQR</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">add_n</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">bold_labels</span>()  <span class="co"># etiquetas o niveles en negrita</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="wqdvkrgmaq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wqdvkrgmaq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wqdvkrgmaq thead, #wqdvkrgmaq tbody, #wqdvkrgmaq tfoot, #wqdvkrgmaq tr, #wqdvkrgmaq td, #wqdvkrgmaq th {
+  border-style: none;
+}
+
+#wqdvkrgmaq p {
+  margin: 0;
+  padding: 0;
+}
+
+#wqdvkrgmaq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wqdvkrgmaq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wqdvkrgmaq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wqdvkrgmaq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wqdvkrgmaq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wqdvkrgmaq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wqdvkrgmaq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wqdvkrgmaq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wqdvkrgmaq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wqdvkrgmaq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wqdvkrgmaq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wqdvkrgmaq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wqdvkrgmaq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wqdvkrgmaq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wqdvkrgmaq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqdvkrgmaq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wqdvkrgmaq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wqdvkrgmaq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wqdvkrgmaq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqdvkrgmaq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wqdvkrgmaq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqdvkrgmaq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wqdvkrgmaq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqdvkrgmaq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wqdvkrgmaq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wqdvkrgmaq .gt_left {
+  text-align: left;
+}
+
+#wqdvkrgmaq .gt_center {
+  text-align: center;
+}
+
+#wqdvkrgmaq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wqdvkrgmaq .gt_font_normal {
+  font-weight: normal;
+}
+
+#wqdvkrgmaq .gt_font_bold {
+  font-weight: bold;
+}
+
+#wqdvkrgmaq .gt_font_italic {
+  font-style: italic;
+}
+
+#wqdvkrgmaq .gt_super {
+  font-size: 65%;
+}
+
+#wqdvkrgmaq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wqdvkrgmaq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wqdvkrgmaq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wqdvkrgmaq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wqdvkrgmaq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wqdvkrgmaq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wqdvkrgmaq .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>N</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N</strong></th>
+<th id="<strong>N = 4,117</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N = 4,117</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">GENERO</td>
+<td class="gt_row gt_center" headers="n">4,116</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Femenino</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,077 (50.5%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Masculino</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,039 (49.5%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">ESTADO_CIVIL</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Casado</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,089 (50.7%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Soltero</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">1,155 (28.1%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Viudo/Divorciado</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">873 (21.2%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">MODALIDAD_PAGO</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Mensual</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,026 (49.2%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Semanal</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,091 (50.8%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">HIPOTECA</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;NO</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">917 (22.3%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Si</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">3,200 (77.7%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">RIESGO</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Cumplimiento</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">3,313 (80.5%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Impago</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">804 (19.5%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="3" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="tablas-bivariadas" class="level3">
+<h3 class="anchored" data-anchor-id="tablas-bivariadas">Tablas bivariadas</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>data_clientes <span class="sc">%&gt;%</span> <span class="co"># datos</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(GENERO, ESTADO_CIVIL, MODALIDAD_PAGO, HIPOTECA, RIESGO) <span class="sc">%&gt;%</span> <span class="co"># se seleccionan las variables que se van a tabular, incluyendo la variable a estratificar </span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> RIESGO, <span class="co"># nombre variable a estratificar</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">missing =</span> <span class="st">"always"</span>, <span class="co"># incluye fila de conteo NA para todas las variables, no se incluye el porcentaje</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">missing_text =</span> <span class="st">"(Missing)"</span>, <span class="co"># nombre que identifica el recuento de observaciones faltantes</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{median} ({p25}, {p75})"</span>), <span class="co"># especificar segun test de normalidad, en caso de no rechazar Ho~normalidad se especificaría: list(all_continuous() ~ "{mean} ({sd})")</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">digits =</span> <span class="fu">list</span>(<span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="co"># (0) sin decimal la frecuencia absoluta, y (1) decimal la frecuencia relativa</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))) <span class="sc">%&gt;%</span> <span class="co"># (0) sin decimal la mediana o media, y (1) decimal la desv estandar o IQR</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">add_n</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">add_overall</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">modify_spanning_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**Chemotherapy Treatment**"</span>) <span class="sc">%&gt;%</span> <span class="co"># agregar encabezado</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">bold_labels</span>()  <span class="co"># etiquetas o niveles en negrita </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fcfhzognfw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fcfhzognfw table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#fcfhzognfw thead, #fcfhzognfw tbody, #fcfhzognfw tfoot, #fcfhzognfw tr, #fcfhzognfw td, #fcfhzognfw th {
+  border-style: none;
+}
+
+#fcfhzognfw p {
+  margin: 0;
+  padding: 0;
+}
+
+#fcfhzognfw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#fcfhzognfw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#fcfhzognfw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#fcfhzognfw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#fcfhzognfw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#fcfhzognfw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#fcfhzognfw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#fcfhzognfw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#fcfhzognfw .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#fcfhzognfw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#fcfhzognfw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fcfhzognfw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#fcfhzognfw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#fcfhzognfw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#fcfhzognfw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fcfhzognfw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#fcfhzognfw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#fcfhzognfw .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#fcfhzognfw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fcfhzognfw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#fcfhzognfw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fcfhzognfw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#fcfhzognfw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fcfhzognfw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fcfhzognfw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fcfhzognfw .gt_left {
+  text-align: left;
+}
+
+#fcfhzognfw .gt_center {
+  text-align: center;
+}
+
+#fcfhzognfw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#fcfhzognfw .gt_font_normal {
+  font-weight: normal;
+}
+
+#fcfhzognfw .gt_font_bold {
+  font-weight: bold;
+}
+
+#fcfhzognfw .gt_font_italic {
+  font-style: italic;
+}
+
+#fcfhzognfw .gt_super {
+  font-size: 65%;
+}
+
+#fcfhzognfw .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#fcfhzognfw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#fcfhzognfw .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#fcfhzognfw .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#fcfhzognfw .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#fcfhzognfw .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#fcfhzognfw .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th rowspan="2" id="<strong>N</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N</strong></th>
+<th colspan="3" id="<strong>Chemotherapy Treatment</strong>" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner"><strong>Chemotherapy Treatment</strong></span></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="<strong>Overall</strong>, N = 4,117<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Overall</strong>, N = 4,117<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>Cumplimiento</strong>, N = 3,313<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Cumplimiento</strong>, N = 3,313<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>Impago</strong>, N = 804<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Impago</strong>, N = 804<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">GENERO</td>
+<td class="gt_row gt_center" headers="n">4,116</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Femenino</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,077 (50.5%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,676 (50.6%)</td>
+<td class="gt_row gt_center" headers="stat_2">401 (49.9%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Masculino</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,039 (49.5%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,636 (49.4%)</td>
+<td class="gt_row gt_center" headers="stat_2">403 (50.1%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">1</td>
+<td class="gt_row gt_center" headers="stat_1">1</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">ESTADO_CIVIL</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Casado</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,089 (50.7%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,689 (51.0%)</td>
+<td class="gt_row gt_center" headers="stat_2">400 (49.8%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Soltero</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">1,155 (28.1%)</td>
+<td class="gt_row gt_center" headers="stat_1">930 (28.1%)</td>
+<td class="gt_row gt_center" headers="stat_2">225 (28.0%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Viudo/Divorciado</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">873 (21.2%)</td>
+<td class="gt_row gt_center" headers="stat_1">694 (20.9%)</td>
+<td class="gt_row gt_center" headers="stat_2">179 (22.3%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+<td class="gt_row gt_center" headers="stat_1">0</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">MODALIDAD_PAGO</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Mensual</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,026 (49.2%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,449 (43.7%)</td>
+<td class="gt_row gt_center" headers="stat_2">577 (71.8%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Semanal</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,091 (50.8%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,864 (56.3%)</td>
+<td class="gt_row gt_center" headers="stat_2">227 (28.2%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+<td class="gt_row gt_center" headers="stat_1">0</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">HIPOTECA</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;NO</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">917 (22.3%)</td>
+<td class="gt_row gt_center" headers="stat_1">812 (24.5%)</td>
+<td class="gt_row gt_center" headers="stat_2">105 (13.1%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Si</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">3,200 (77.7%)</td>
+<td class="gt_row gt_center" headers="stat_1">2,501 (75.5%)</td>
+<td class="gt_row gt_center" headers="stat_2">699 (86.9%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+<td class="gt_row gt_center" headers="stat_1">0</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="5" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="tablas-bivariadas-con-valores-p" class="level3">
+<h3 class="anchored" data-anchor-id="tablas-bivariadas-con-valores-p">Tablas bivariadas con valores p</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>data_clientes <span class="sc">%&gt;%</span> <span class="co"># datos</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(GENERO, ESTADO_CIVIL, MODALIDAD_PAGO, HIPOTECA, RIESGO) <span class="sc">%&gt;%</span> <span class="co"># se seleccionan las variables que se van a tabular, incluyendo la variable a estratificar </span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> RIESGO, <span class="co"># nombre variable a estratificar</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">missing =</span> <span class="st">"always"</span>, <span class="co"># incluye fila de conteo NA para todas las variables, no se incluye el porcentaje</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">missing_text =</span> <span class="st">"(Missing)"</span>, <span class="co"># nombre que identifica el recuento de observaciones faltantes</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{median} ({p25}, {p75})"</span>), <span class="co"># especificar segun test de normalidad, en caso de no rechazar Ho~normalidad se especificaría: list(all_continuous() ~ "{mean} ({sd})")</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">digits =</span> <span class="fu">list</span>(<span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="co"># (0) sin decimal la frecuencia absoluta, y (1) decimal la frecuencia relativa</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))) <span class="sc">%&gt;%</span> <span class="co"># (0) sin decimal la mediana o media, y (1) decimal la desv estandar o IQR</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">add_n</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">add_overall</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">add_p</span>(<span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"wilcox.test"</span>, <span class="co"># test no parametrico variables numericas</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"chisq.test"</span>)) <span class="sc">%&gt;%</span> <span class="co"># test variables categoricas</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">bold_p</span>(<span class="at">t=</span><span class="fl">0.05</span>) <span class="sc">%&gt;%</span> <span class="co"># valores p significativos en negrita</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">modify_spanning_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**Chemotherapy Treatment**"</span>) <span class="sc">%&gt;%</span> <span class="co"># agregar encabezado</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">modify_header</span>(<span class="at">update =</span> <span class="fu">list</span>(label <span class="sc">~</span> <span class="st">"**Variable**"</span>,</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>                           p.value <span class="sc">~</span> <span class="st">"***valor p***"</span>)) <span class="sc">%&gt;%</span> <span class="co"># modificar encabezado, tanto el nombre como el estilo (***cursiva***, **negrita**)</span></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span>  <span class="co"># etiquetas o niveles en negrita</span></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>    gtsummary<span class="sc">::</span><span class="fu">modify_footnote</span>( <span class="co"># notas al pie (queda a su opcion)</span></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">update =</span> <span class="fu">list</span>(</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"Median (IQR);  n (%)"</span>,</span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">~</span> <span class="st">"Wilcoxon rank sum test; Pearson's Chi-squared test"</span>)</span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="yyxkdennzx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yyxkdennzx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yyxkdennzx thead, #yyxkdennzx tbody, #yyxkdennzx tfoot, #yyxkdennzx tr, #yyxkdennzx td, #yyxkdennzx th {
+  border-style: none;
+}
+
+#yyxkdennzx p {
+  margin: 0;
+  padding: 0;
+}
+
+#yyxkdennzx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yyxkdennzx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yyxkdennzx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yyxkdennzx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yyxkdennzx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yyxkdennzx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yyxkdennzx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yyxkdennzx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yyxkdennzx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yyxkdennzx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yyxkdennzx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yyxkdennzx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yyxkdennzx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yyxkdennzx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yyxkdennzx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yyxkdennzx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yyxkdennzx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yyxkdennzx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yyxkdennzx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yyxkdennzx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yyxkdennzx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yyxkdennzx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yyxkdennzx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yyxkdennzx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yyxkdennzx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yyxkdennzx .gt_left {
+  text-align: left;
+}
+
+#yyxkdennzx .gt_center {
+  text-align: center;
+}
+
+#yyxkdennzx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yyxkdennzx .gt_font_normal {
+  font-weight: normal;
+}
+
+#yyxkdennzx .gt_font_bold {
+  font-weight: bold;
+}
+
+#yyxkdennzx .gt_font_italic {
+  font-style: italic;
+}
+
+#yyxkdennzx .gt_super {
+  font-size: 65%;
+}
+
+#yyxkdennzx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yyxkdennzx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yyxkdennzx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yyxkdennzx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yyxkdennzx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yyxkdennzx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yyxkdennzx .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="<strong>Variable</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Variable</strong></th>
+<th rowspan="2" id="<strong>N</strong>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N</strong></th>
+<th colspan="3" id="<strong>Chemotherapy Treatment</strong>" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner"><strong>Chemotherapy Treatment</strong></span></th>
+<th rowspan="2" id="<em><strong>valor p</strong></em><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><em><strong>valor p</strong></em><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="<strong>Overall</strong>, N = 4,117<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Overall</strong>, N = 4,117<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>Cumplimiento</strong>, N = 3,313<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Cumplimiento</strong>, N = 3,313<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>Impago</strong>, N = 804<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Impago</strong>, N = 804<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">GENERO</td>
+<td class="gt_row gt_center" headers="n">4,116</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value">0.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Femenino</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,077 (50.5%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,676 (50.6%)</td>
+<td class="gt_row gt_center" headers="stat_2">401 (49.9%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Masculino</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,039 (49.5%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,636 (49.4%)</td>
+<td class="gt_row gt_center" headers="stat_2">403 (50.1%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">1</td>
+<td class="gt_row gt_center" headers="stat_1">1</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">ESTADO_CIVIL</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value">0.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Casado</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,089 (50.7%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,689 (51.0%)</td>
+<td class="gt_row gt_center" headers="stat_2">400 (49.8%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Soltero</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">1,155 (28.1%)</td>
+<td class="gt_row gt_center" headers="stat_1">930 (28.1%)</td>
+<td class="gt_row gt_center" headers="stat_2">225 (28.0%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Viudo/Divorciado</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">873 (21.2%)</td>
+<td class="gt_row gt_center" headers="stat_1">694 (20.9%)</td>
+<td class="gt_row gt_center" headers="stat_2">179 (22.3%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+<td class="gt_row gt_center" headers="stat_1">0</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">MODALIDAD_PAGO</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value" style="font-weight: bold">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Mensual</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,026 (49.2%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,449 (43.7%)</td>
+<td class="gt_row gt_center" headers="stat_2">577 (71.8%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Semanal</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">2,091 (50.8%)</td>
+<td class="gt_row gt_center" headers="stat_1">1,864 (56.3%)</td>
+<td class="gt_row gt_center" headers="stat_2">227 (28.2%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+<td class="gt_row gt_center" headers="stat_1">0</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">HIPOTECA</td>
+<td class="gt_row gt_center" headers="n">4,117</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value" style="font-weight: bold">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;NO</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">917 (22.3%)</td>
+<td class="gt_row gt_center" headers="stat_1">812 (24.5%)</td>
+<td class="gt_row gt_center" headers="stat_2">105 (13.1%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Si</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">3,200 (77.7%)</td>
+<td class="gt_row gt_center" headers="stat_1">2,501 (75.5%)</td>
+<td class="gt_row gt_center" headers="stat_2">699 (86.9%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;(Missing)</td>
+<td class="gt_row gt_center" headers="n"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0">0</td>
+<td class="gt_row gt_center" headers="stat_1">0</td>
+<td class="gt_row gt_center" headers="stat_2">0</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Median (IQR); n (%)</td>
+</tr>
+<tr class="even">
+<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Wilcoxon rank sum test; Pearson’s Chi-squared test</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="modelos" class="level1">
+<h1>Modelos</h1>
+<section id="modelo-líneal-simple" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-líneal-simple">Modelo Líneal simple</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Modelo lineal simple</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>model.Lsimple <span class="ot">&lt;-</span> <span class="fu">lm</span>(INGRESOS<span class="sc">~</span>RIESGO, <span class="at">data=</span>data_clientes)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.Lsimple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = INGRESOS ~ RIESGO, data = data_clientes)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-19078  -4886   -835   1773  36185 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   23507.1      133.6  175.91   &lt;2e-16 ***
+RIESGOImpago  10615.8      302.4   35.11   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7691 on 4115 degrees of freedom
+Multiple R-squared:  0.2305,    Adjusted R-squared:  0.2303 
+F-statistic:  1233 on 1 and 4115 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="modelo-líneal-múltiple" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-líneal-múltiple">Modelo Líneal múltiple</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Cargando paquete requerido: carData</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'car'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    recode</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    some</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Cargando paquete requerido: zoo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'zoo'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Modelo lineal múltiple</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>model.Lmultiple <span class="ot">&lt;-</span> <span class="fu">lm</span>(INGRESOS<span class="sc">~</span>., <span class="at">data=</span><span class="fu">subset</span>(data_clientes, <span class="at">select =</span> <span class="sc">-</span>ID))</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.Lmultiple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = INGRESOS ~ ., data = subset(data_clientes, select = -ID))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-20966.4  -3783.0   -164.1   3493.7  29467.3 
+
+Coefficients:
+                             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                   29705.1      579.6  51.246  &lt; 2e-16 ***
+EDAD                            267.7       13.2  20.274  &lt; 2e-16 ***
+GENEROMasculino                 487.9      182.0   2.681  0.00738 ** 
+ESTADO_CIVILSoltero           -8680.1      288.7 -30.068  &lt; 2e-16 ***
+ESTADO_CIVILViudo/Divorciado   3569.1      495.9   7.198 7.24e-13 ***
+NUM_HIJOS                     -3088.4      137.1 -22.523  &lt; 2e-16 ***
+NUM_TARJETAS                    126.5      101.8   1.242  0.21414    
+MODALIDAD_PAGOSemanal         -2766.8      227.5 -12.162  &lt; 2e-16 ***
+HIPOTECASi                     -783.4      268.9  -2.913  0.00360 ** 
+PRESTAMOS                     -4231.6      191.9 -22.049  &lt; 2e-16 ***
+RIESGOImpago                   4108.3      268.4  15.307  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5836 on 4105 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.5565,    Adjusted R-squared:  0.5554 
+F-statistic:   515 on 10 and 4105 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluación de supuestos</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalidad de los residuos</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(model.Lmultiple))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">resid</span>(model.Lmultiple))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  resid(model.Lmultiple)
+W = 0.98208, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Independencia de los residuos</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">durbinWatsonTest</span>(model.Lmultiple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> lag Autocorrelation D-W Statistic p-value
+   1       0.5497109     0.8976777       0
+ Alternative hypothesis: rho != 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Homocedasticidad</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bptest</span>(model.Lmultiple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    studentized Breusch-Pagan test
+
+data:  model.Lmultiple
+BP = 430.55, df = 10, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supuesto de linealidad</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model.Lmultiple, <span class="at">wich=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.window(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.xy(xy, type, ...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in axis(side = side, at = at, labels = labels, ...): "wich" es un
+parámetro gráfico inválido
+Warning in axis(side = side, at = at, labels = labels, ...): "wich" es un
+parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in box(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in title(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.xy(xy.coords(x, y), type = type, ...): "wich" es un parámetro
+gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in title(sub = sub.caption, ...): "wich" es un parámetro gráfico
+inválido</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.window(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.xy(xy, type, ...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in axis(side = side, at = at, labels = labels, ...): "wich" es un
+parámetro gráfico inválido
+Warning in axis(side = side, at = at, labels = labels, ...): "wich" es un
+parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in box(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in title(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in title(sub = sub.caption, ...): "wich" es un parámetro gráfico
+inválido</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-19-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.window(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.xy(xy, type, ...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in axis(side = side, at = at, labels = labels, ...): "wich" es un
+parámetro gráfico inválido
+Warning in axis(side = side, at = at, labels = labels, ...): "wich" es un
+parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in box(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in title(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.xy(xy.coords(x, y), type = type, ...): "wich" es un parámetro
+gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in title(sub = sub.caption, ...): "wich" es un parámetro gráfico
+inválido</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-19-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.window(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.xy(xy, type, ...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in axis(side = side, at = at, labels = labels, ...): "wich" es un
+parámetro gráfico inválido
+Warning in axis(side = side, at = at, labels = labels, ...): "wich" es un
+parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in box(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in title(...): "wich" es un parámetro gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot.xy(xy.coords(x, y), type = type, ...): "wich" es un parámetro
+gráfico inválido</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in title(sub = sub.caption, ...): "wich" es un parámetro gráfico
+inválido</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-19-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ausencia de multicolinealidad</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(model.Lmultiple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   GVIF Df GVIF^(1/(2*Df))
+EDAD           2.055511  1        1.433705
+GENERO         1.000704  1        1.000352
+ESTADO_CIVIL   9.037144  2        1.733835
+NUM_HIJOS      3.113940  1        1.764636
+NUM_TARJETAS   4.430928  1        2.104977
+MODALIDAD_PAGO 1.563332  1        1.250333
+HIPOTECA       1.513750  1        1.230346
+PRESTAMOS      3.125541  1        1.767920
+RIESGO         1.368491  1        1.169825</code></pre>
+</div>
+</div>
+</section>
+<section id="modelo-logístico" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-logístico">Modelo Logístico</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>data_clientes<span class="sc">$</span>RIESGO_bin <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data_clientes<span class="sc">$</span>RIESGO <span class="sc">==</span> <span class="st">"V"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>modelo.logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(RIESGO_bin <span class="sc">~</span>. ,</span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> <span class="fu">subset</span>(data_clientes, <span class="at">select=</span> <span class="sc">-</span>ID),</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">family =</span> binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: glm.fit: algorithm did not converge</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo.logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = RIESGO_bin ~ ., family = binomial, data = subset(data_clientes, 
+    select = -ID))
+
+Coefficients:
+                                               Estimate
+(Intercept)                    -26.56606852354313019760
+EDAD                             0.00000000000000377462
+INGRESOS                        -0.00000000000000004982
+GENEROMasculino                 -0.00000000000017274949
+ESTADO_CIVILSoltero             -0.00000000000012194373
+ESTADO_CIVILViudo/Divorciado     0.00000000000043157835
+NUM_HIJOS                       -0.00000000000017836953
+NUM_TARJETAS                    -0.00000000000004034166
+MODALIDAD_PAGOSemanal           -0.00000000000012516562
+HIPOTECASi                       0.00000000000007230869
+PRESTAMOS                        0.00000000000005453260
+RIESGOImpago                    -0.00000000000012061717
+                                             Std. Error z value Pr(&gt;|z|)
+(Intercept)                  45296.74856469828955596313  -0.001        1
+EDAD                           845.15799632907771865575   0.000        1
+INGRESOS                         0.95247389402624604848   0.000        1
+GENEROMasculino              11115.89810978742571023759   0.000        1
+ESTADO_CIVILSoltero          19460.25179181103885639459   0.000        1
+ESTADO_CIVILViudo/Divorciado 30450.42116368264760239981   0.000        1
+NUM_HIJOS                     8870.07570256622602755670   0.000        1
+NUM_TARJETAS                  6214.39177559506970283110   0.000        1
+MODALIDAD_PAGOSemanal        14130.64339357041353650857   0.000        1
+HIPOTECASi                   16429.43340504031584714539   0.000        1
+PRESTAMOS                    12386.07101755217627214734   0.000        1
+RIESGOImpago                 16839.91498738039808813483   0.000        1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 0.000000000000  on 4115  degrees of freedom
+Residual deviance: 0.000000023879  on 4104  degrees of freedom
+  (1 observation deleted due to missingness)
+AIC: 24
+
+Number of Fisher Scoring iterations: 25</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coefficients</span>(modelo.logit))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 (Intercept)                         EDAD 
+        0.000000000002900701         1.000000000000003775 
+                    INGRESOS              GENEROMasculino 
+        1.000000000000000000         0.999999999999827249 
+         ESTADO_CIVILSoltero ESTADO_CIVILViudo/Divorciado 
+        0.999999999999878098         1.000000000000431655 
+                   NUM_HIJOS                 NUM_TARJETAS 
+        0.999999999999821587         0.999999999999959699 
+       MODALIDAD_PAGOSemanal                   HIPOTECASi 
+        0.999999999999874878         1.000000000000072387 
+                   PRESTAMOS                 RIESGOImpago 
+        1.000000000000054623         0.999999999999879430 </code></pre>
+</div>
+</div>
+
+
 </section>
 </section>
 

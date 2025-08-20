@@ -415,7 +415,9 @@ modelo.logit <- glm(RIESGO_bin ~. ,
                     data = subset(data_clientes, select= -ID),
                     family = binomial)
 
+library(Epi)
 summary(modelo.logit)
-exp(coefficients(modelo.logit))
+ci.lin(modelo.logit, Exp=TRUE)
+
 
 ```
